@@ -1,0 +1,17 @@
+{
+    "name": "xslide",
+    "comName":"xslide",
+    "version": "1.0",
+    "desc": "移动端轮播组件",
+    "tag":"kissy-mini,kissy-mini",
+    "githubName":"huxiaoqi567",
+    "author": {
+        "name": "伯才",
+        "email": "382850581@qq.com",
+        "page": "github.com/huxiaoqi567/"
+    },
+	"flexComboPort":"80",
+	"reserveServerPort":"9000",
+    "type": "kissy-gallery",
+    "type-url": "http://gallery.kissyui.com/guide"
+}

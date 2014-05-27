@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <title>XSlide demo </title>
+        <style type="text/css">
+            body,li,ul{
+              margin:0;
+              padding: 0;
+            }
+           body{
+            margin:0;
+            position: absolute;
+            height: 100%;
+           }
+           #J_Slide{
+             width: 100%;
+             overflow: hidden;
+             width: 320px;
+             height: 140px;
+           }
+           #J_Slide .ks-xslide-item,#J_Slide .ks-xslide-item img,.focus-box{
+             width: 70px;
+             display: block;
+             float: left;
+              height: 110px;
+             overflow: hidden;
+           }
+           .focus-box{
+            float: none;
+            position: absolute;
+            left:9px;
+            top:9px;
+            z-index: 9999;
+            border:1px solid red;
+           }
+           #J_Slide .ks-xslide-item{
+            padding: 10px;
+           }
+           .ks-xslide-layer{
+              height: 110px;
+              width: 9999px;
+           }
+           .ks-xslide-nav{
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left:0;
+            text-align: center;
+            z-index: 9999;
+           }
+           .ks-xslide-nav .ks-xslide-nav-item{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ddd;
+            text-indent: 9999px;
+            overflow: hidden;
+            border-radius:5px;
+            margin:0px 2px;
+           }
+           .ks-xslide-nav .current{
+            background: #f60;
+           }
+        </style>
+    </head>
+    <body>
+      <div id="J_Slide">
+        <div class="focus-box"></div>
+         <ul class="ks-xslide-layer">
+           <li class="ks-xslide-item current">
+             <a href="#">
+                   <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i4/T1opRPFQ8aXXXXXXXX_.jpg_160x160.jpg">
+                </a>
+           </li>
+           <li class="ks-xslide-item">
+             <a href="#">
+              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i2/T1K0Y9FGxXXXXXXXXX_.jpg_160x160.jpg">
+           </li>
+           <li class="ks-xslide-item">
+             <a href="#">
+              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i4/T1SKr4FK0bXXXXXXXX_.jpg_160x160.jpg">
+             </a>
+           </li>
+           <li class="ks-xslide-item">
+             <a href="#">
+             <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i3/T10yf7FI0XXXXXXXXX_.jpg_160x160.jpg">
+           </li>
+           <li class="ks-xslide-item">
+             <a href="#">
+              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i2/T1JRT3FMNbXXXXXXXX_.jpg_160x160.jpg">
+           </li>
+         </ul>
+  
+               
+      </div>
+
+
+      <div id="console" style="position:absolute;bottom:0;width:100%;background:#000;opacity:0.5;color:#fff;min-height:20px;"></div>
+
+    </body>
+    <script src="http://g.tbcdn.cn/kissy/m/0.2.0/mini-full-min.js"></script>
+      <script type="text/javascript">
+      KISSY.use("node,gallery/xslide/1.0/index", function(S,Node, XSlide) {
+        var slide = new XSlide({
+            renderTo: "#J_Slide",
+            width:320,
+        });
+        slide.on("afterSlide",function(e){
+          S.all("#console").html(e.curIndex.toString());
+        })
+      })
+      </script>
+
+</html>

@@ -211,8 +211,6 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
     var itemCls = prefix + "item";
     var navCls = prefix + "nav";
     var navItemCls = "ks-xslide-nav-item";
-    var config, itemNum, itemHeight, itemWidth, width, height, layWidth, crousel = false;
-    var $renderTo, $layer, $items, $nav, $navItems;
     var crouselIndex = 0;
     var MIN_VELOCITY = 0.2;
     var MIN_DELTAX = 5;
@@ -229,44 +227,49 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
         },
         initializer: function() {
             var self = this;
-            config = self.userConfig;
-            $renderTo = self.$renderTo = $(config.renderTo);
+            var config = self.userConfig;
+            var $renderTo = self.$renderTo = $(config.renderTo);
             //是否旋转木马
-            crousel = config.crousel;
+            self.crousel = config.crousel;
             if (!config.renderTo || !$renderTo[0]) {
                 return;
             }
             self.curIndex = 0;
             crouselIndex = 0;
-            $layer = self.$layer = $(layerCls, $renderTo);
-            $items = self.$items = $(itemCls, $layer);
-            $nav = self.$nav = $(navCls, $renderTo);
-            itemNum = self.itemNum = $items.length;
+            var $layer = self.$layer = $(layerCls, $renderTo);
+            var $items = self.$items = $(itemCls, $layer);
+            var $nav = self.$nav = $(navCls, $renderTo);
+            var itemNum = self.itemNum = $items.length;
             if (!itemNum) return;
             if (itemNum <= 2) {
                 //如果卡牌数小于3 关闭旋转木马
-                crousel = false;
+                self.crousel = false;
             }
             self.render();
         },
         render: function() {
             var self = this;
-            width = config.width || $renderTo.width() || 30;
-            height = config.height || $renderTo.height() || 30;
-            itemWidth = config.itemWidth || $items.width() || width;
-            itemHeight = config.itemHeight || $items.height()||height;
+            var config = self.userConfig;
+            var $renderTo = self.$renderTo;
+            var $layer = self.$layer;
+            var $items = self.$items;
+            var $nav = self.$nav;
+            var itemWidth = self.itemWidth = config.itemWidth;
+            var itemNum = self.itemNum;
+            var itemHeight = config.itemHeight;
+            var $navItems;
             //如果是旋转木马 则多2个坑
-            layWidth = self.itemNum * itemWidth;
+            self.layWidth = self.itemNum * itemWidth;
             $renderTo.css({
-                "height": height + "px",
-                "width": width + "px",
+                "height": config.height + "px",
+                "width": config.width + "px",
                 "overflow": "hidden",
                 "position": "relative"
             });
             $layer.css({
                 "position": "absolute",
                 "height": itemHeight + "px",
-                "width": layWidth
+                "width": self.layWidth
             });
             self.transform($layer[0], {
                 translateX: "(0px) translateZ(0px)"
@@ -285,15 +288,15 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
                 }
                 $navItems = self.$navItems = $(navStr).appendTo($nav);
             } else {
-                $navItems = $("li", $nav);
+                $navItems = self.$navItems = $("li", $nav);
             }
             self.evtBind();
-            $navItems.removeClass("current").item(0).addClass("current");
 
+            $navItems.removeClass("current").item(0).addClass("current");
             for (var i = 0; i < itemNum; i++) {
                 self.put(i, i);
             }
-            if (crousel) {
+            if (self.crousel) {
                 self.put(itemNum - 1, -1)
             }
         },
@@ -307,31 +310,31 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
         },
         setPosX: function(offsetX) {
             var self = this;
-            $layer[0].style.webkitTransition = "";
-            self.transform($layer[0], {
+            self.$layer[0].style.webkitTransition = "";
+            self.transform(self.$layer[0], {
                 translateX: "(" + offsetX + "px) translateZ(0px)"
             });
         },
         getPrev: function() {
             var self = this;
             var curIndex = self.curIndex;
-            return this.$items.item((curIndex - 1 + itemNum) % itemNum);
+            return self.$items.item((curIndex - 1 + self.itemNum) % self.itemNum);
         },
         getNext: function() {
             var self = this;
             var curIndex = self.curIndex;
-            return this.$items.item((curIndex + 1) % itemNum);
+            return self.$items.item((curIndex + 1) % self.itemNum);
         },
         getCurrent: function() {
             var self = this;
             var curIndex = self.curIndex;
-            return this.$items.item(curIndex);
+            return self.$items.item(curIndex);
         },
         getItem: function(index) {
             if (index < 0) {
-                return this.$items.item(index % itemNum + itemNum);
+                return this.$items.item(index % self.itemNum + self.itemNum);
             } else {
-                return this.$items.item(index % itemNum);
+                return this.$items.item(index % self.itemNum);
             }
         },
         evtBind: function() {
@@ -339,6 +342,11 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             var transX = 0;
             var records = [transX];
             var tmpTransX;
+            var $renderTo = self.$renderTo;
+            var $layer = self.$layer;
+            var $items = self.$items;
+            var $nav = self.$nav;
+            var $navItems = self.$navItems;
 
             $renderTo.on(Drag.DRAG_START, function(e) {
                 transX = self.getPosX();
@@ -396,7 +404,13 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
         //动画到第index个
         animTo: function(index) {
             var self = this;
-            if (crousel) {
+            var $renderTo = self.$renderTo;
+            var $layer = self.$layer;
+            var $items = self.$items;
+            var $nav = self.$nav;
+            var itemWidth = self.itemWidth;
+            var itemNum = self.itemNum;
+            if (self.crousel) {
                 crouselIndex = index;
             }
             if (index < 0) {
@@ -404,31 +418,29 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             } else if (index > self.itemNum - 1) {
                 index = self.itemNum - 1
             }
-            var offsetX = crousel ? itemWidth * crouselIndex : itemWidth * index;
+            var offsetX = self.crousel ? itemWidth * crouselIndex : itemWidth * index;
             var duration = 0.4;
             var easing = "ease-out";
             self.transform($layer[0], {
                 translateX: "(" + (-offsetX) + "px) translateZ(0px)"
             });
             $layer[0].style.webkitTransition = "-webkit-transform " + duration + "s " + easing + " 0s";
-            if (crousel) {
+            if (self.crousel) {
                 self.curIndex = crouselIndex % itemNum < 0 ? itemNum + crouselIndex % itemNum : (crouselIndex % itemNum);
             } else {
                 self.curIndex = index
             }
-
-            $navItems.removeClass("current").item(self.curIndex).addClass("current");
+            self.$navItems.removeClass("current").item(self.curIndex).addClass("current");
             $items.removeClass("current").item(self.curIndex).addClass("current");
             self.fire("beforeAnim", {
                 direction: self.direction
             })
         },
-        getCurrentIndex:function(){
-            return this.curIndex||0;
-        },
         //获取非整数倍的元素应当anim的位置
         judgePos: function() {
             var self = this;
+            var itemNum = self.itemNum;
+            var itemWidth = self.itemWidth;
             var posX = self.getPosX();
             self.direction = -posX / itemWidth - Math.floor(-posX / itemWidth) >= 0.5 ? "left" : "right";
             crouselIndex = Math.round(-posX / itemWidth);
@@ -446,9 +458,9 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
 
             var curIndex = self.curIndex;
             //最后一个索引
-            var lastIndex = itemNum - 1;
+            var lastIndex = self.itemNum - 1;
             //旋转木马
-            if (crousel) {
+            if (self.crousel) {
                 //考虑只有1个情况
                 if (self.direction == "right") {
                     self.put(curIndex - 1, crouselIndex - 1);
@@ -460,12 +472,14 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
         //放置元素至指定位置
         put: function(elIndex, offsetIndex) {
             var self = this;
+            var itemNum = self.itemNum;
+            var itemWidth = self.itemWidth;
             if (elIndex < 0) {
                 elIndex = itemNum - 1;
             } else if (elIndex > itemNum - 1) {
                 elIndex = 0;
             }
-            self.transform($items.item(elIndex)[0], {
+            self.transform(self.$items.item(elIndex)[0], {
                 translateX: "(" + offsetIndex * itemWidth + "px) translateZ(0px)"
             })
         }

@@ -24,6 +24,25 @@ Xlist是基于html5的无尽下拉列表实现
     })
 
 
+### html 结构
+
+```
+
+<div id="J_Slide">
+	<!-- 小圆点 -->
+ 	<ul class="ks-xslide-nav"></ul>  
+	<!-- 选项卡容器 可以默认宽度9999px-->
+     	<ul class="ks-xslide-layer">
+	      <li class="ks-xslide-item current"></li>
+	      <li class="ks-xslide-item"></li>
+	      <li class="ks-xslide-item"></li>
+	</ul>
+</div>
+
+
+
+```
+
 ## API说明
 
 ### Attribute

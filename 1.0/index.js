@@ -22,6 +22,15 @@ KISSY.add(function(S, Node, Base, Drag) {
         },
         initializer: function() {
             var self = this;
+            self.userConfig = S.mix({
+                autoRender: true,
+                autoSlide: false,
+                timeOut: 5000
+            }, self.userConfig, undefined, undefined, true);
+            self.userConfig.autoRender && self.render();
+        },
+        render: function() {
+            var self = this;
             var config = self.userConfig;
             var $renderTo = self.$renderTo = $(config.renderTo);
             //是否旋转木马
@@ -29,32 +38,27 @@ KISSY.add(function(S, Node, Base, Drag) {
             if (!config.renderTo || !$renderTo[0]) {
                 return;
             }
-            self.curIndex = 0;
-            crouselIndex = 0;
             var $layer = self.$layer = $(layerCls, $renderTo);
             var $items = self.$items = $(itemCls, $layer);
             var $nav = self.$nav = $(navCls, $renderTo);
             var itemNum = self.itemNum = $items.length;
+            var width = config.width || $renderTo.width() || 300;
+            var height = config.height || $renderTo.height() || 50;
+            var itemWidth = self.itemWidth = config.itemWidth || width;
+            var itemHeight = config.itemHeight || height;
+            var $navItems;
+
+
+            self.curIndex = 0;
+            crouselIndex = 0;
+
             if (!itemNum) return;
             if (itemNum <= 2) {
                 //如果卡牌数小于3 关闭旋转木马
                 self.crousel = false;
             }
-            self.render();
-        },
-        render: function() {
-            var self = this;
-            var config = self.userConfig;
-            var $renderTo = self.$renderTo;
-            var $layer = self.$layer;
-            var $items = self.$items;
-            var $nav = self.$nav;
-            var width = config.width || $renderTo.width() || 300;
-            var height = config.height || $renderTo.height() || 50;
-            var itemWidth = self.itemWidth = config.itemWidth || width;
-            var itemNum = self.itemNum;
-            var itemHeight = config.itemHeight || height;
-            var $navItems;
+
+
             //如果是旋转木马 则多2个坑
             self.layWidth = self.itemNum * itemWidth;
             $renderTo.css({
@@ -78,11 +82,12 @@ KISSY.add(function(S, Node, Base, Drag) {
                 "position": "absolute"
             });
 
-            if ($("li", $nav) && !$("li", $nav).length) {
+            if (!$("li", $nav).length || itemNum != $("li", $nav).length) {
                 var navStr = "";
                 for (var i = 1; i <= self.itemNum; i++) {
                     navStr += "<li class='" + navItemCls + "'>" + i + "</li>";
                 }
+                $nav.html("");
                 $navItems = self.$navItems = $(navStr).appendTo($nav);
             } else {
                 $navItems = self.$navItems = $("li", $nav);
@@ -96,6 +101,8 @@ KISSY.add(function(S, Node, Base, Drag) {
             if (self.crousel) {
                 self.put(itemNum - 1, -1)
             }
+
+            self.userConfig.autoSlide && self.autoSlide();
         },
         pop: function(array) {
             var len = array.length;
@@ -136,6 +143,9 @@ KISSY.add(function(S, Node, Base, Drag) {
         },
         evtBind: function() {
             var self = this;
+
+            if (self._isEvtBind) return;
+
             var transX = 0;
             var records = [transX];
             var tmpTransX;
@@ -151,6 +161,7 @@ KISSY.add(function(S, Node, Base, Drag) {
                     curIndex: self.curIndex
                 })
                 self.set("enable", true);
+                self.__autoSlideOn = false;
             }).on(Drag.DRAG, function(e) {
                 if (self.get("enable") == false) return;
                 if (Math.abs(e.deltaX) > MIN_DELTAX || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -185,6 +196,10 @@ KISSY.add(function(S, Node, Base, Drag) {
                     self.animTo(curIndex);
                 }
 
+                setTimeout(function(){
+                    self.__autoSlideOn = true;
+                },2000)
+
             })
 
             self.on("beforeAnim", function() {
@@ -196,6 +211,8 @@ KISSY.add(function(S, Node, Base, Drag) {
                     curIndex: self.curIndex
                 });
             }, false);
+
+            self._isEvtBind = true;
 
         },
         //动画到第index个
@@ -279,6 +296,36 @@ KISSY.add(function(S, Node, Base, Drag) {
             self.transform(self.$items.item(elIndex)[0], {
                 translateX: "(" + offsetIndex * itemWidth + "px) translateZ(0px)"
             })
+        },
+        autoSlide: function() {
+            var self = this;
+            var index = self.curIndex;
+            //开启动画
+            self.__autoSlideOn = true;
+            self.direction = "left";
+            clearInterval(self.__autoSlideItv);
+            self.__autoSlideItv = setInterval(function() {
+                if(!self.__autoSlideOn) return;
+                index = self.userConfig.crousel ? crouselIndex: self.curIndex;
+                index++;
+                if (!self.userConfig.crousel && index >= self.itemNum) {
+                    index = 0;
+                }
+                self.animTo(index);
+            }, self.userConfig.timeOut);
+        },
+        destroy: function() {
+            var self = this;
+            clearInteval(self.__autoSlideItv);
+            self.$renderTo.detach(Drag.DRAG_START);
+            self.$renderTo.detach(Drag.DRAG);
+            self.$renderTo.detach(Drag.DRAG_END)
+            self.detach("beforeAnim", function() {
+                self.computePos();
+            })
+            self.$layer[0].removeEventListener("webkitTransitionEnd");
+            self.$renderTo.html("");
+            delete self;
         }
 
     });

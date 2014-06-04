@@ -71,9 +71,23 @@ XSlide是适用于移动设备的轮播组件，使用方便、轻巧，支持�
 
 { Boolean } 是否开启旋转木马
 
+#### autoSlide
+
+{ Boolean } 是否开启自动轮播
+
+#### autoRender
+
+{ Boolean } 是否自动渲染 如选择否 则需要手动调用render()方法
+
+
+
 
 
 ### Method
+
+#### render()
+
+渲染、更新 可以重复调用进行组件更新，如卡牌数量、内容的变更
 
 #### animTo(index)
 
@@ -94,6 +108,10 @@ XSlide是适用于移动设备的轮播组件，使用方便、轻巧，支持�
 #### getPosX()
 
 获取当前距左侧的offset
+
+#### destroy()
+
+销毁当前实例
 
 
 

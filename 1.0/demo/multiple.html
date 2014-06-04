@@ -27,6 +27,9 @@
               height: 110px;
              overflow: hidden;
            }
+           #J_Slide .ks-xslide-item{
+            width: 60px;
+           }
            .focus-box{
             float: none;
             position: absolute;
@@ -106,6 +109,7 @@
         var slide = new XSlide({
             renderTo: "#J_Slide",
             width:320,
+            itemWidth:80
         });
         slide.on("afterSlide",function(e){
           S.all("#console").html(e.curIndex.toString());

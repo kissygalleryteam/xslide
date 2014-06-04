@@ -49,15 +49,17 @@ KISSY.add(function(S, Node, Base, Drag) {
             var $layer = self.$layer;
             var $items = self.$items;
             var $nav = self.$nav;
-            var itemWidth = self.itemWidth = config.itemWidth;
+            var width = config.width || $renderTo.width() || 300;
+            var height = config.height || $renderTo.height() || 50;
+            var itemWidth = self.itemWidth = config.itemWidth || width;
             var itemNum = self.itemNum;
-            var itemHeight = config.itemHeight;
+            var itemHeight = config.itemHeight || height;
             var $navItems;
             //如果是旋转木马 则多2个坑
             self.layWidth = self.itemNum * itemWidth;
             $renderTo.css({
-                "height": config.height + "px",
-                "width": config.width + "px",
+                "height": height + "px",
+                "width": width + "px",
                 "overflow": "hidden",
                 "position": "relative"
             });

@@ -15,6 +15,8 @@ XSlide是适用于移动设备的轮播组件，使用方便、轻巧，支持�
 
 [shadow.html](../demo/shadow.html)
 
+[autoplay.html](../demo/autoplay.html)
+
 ## 初始化组件
 		
     S.use('gallery/xslide/1.0/index', function (S, XSlide) {

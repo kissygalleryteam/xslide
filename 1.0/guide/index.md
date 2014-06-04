@@ -1,6 +1,6 @@
 ## 综述
 
-Xlist是基于html5的无尽下拉列表实现
+XSlide是适用于移动设备的轮播组件，使用方便、轻巧，支持旋转木马。
 
 * 版本：1.0
 * 作者：伯才
@@ -17,7 +17,7 @@ Xlist是基于html5的无尽下拉列表实现
 
 ## 初始化组件
 		
-    S.use('gallery/xlist/1.0/index', function (S, XSlide) {
+    S.use('gallery/xslide/1.0/index', function (S, XSlide) {
          var xslide = new XSlide({
          	renderTo: "#J_Slide"
          });

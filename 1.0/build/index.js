@@ -238,8 +238,6 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             var self = this;
             var config = self.userConfig;
             var $renderTo = self.$renderTo = $(config.renderTo);
-            //是否旋转木马
-            self.crousel = config.crousel;
             if (!config.renderTo || !$renderTo[0]) {
                 return;
             }
@@ -253,16 +251,13 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             var itemHeight = config.itemHeight || height;
             var $navItems;
 
-
             self.curIndex = 0;
             crouselIndex = 0;
 
             if (!itemNum) return;
             if (itemNum <= 2) {
-                //如果卡牌数小于3 关闭旋转木马
-                self.crousel = false;
+                config.crousel = false;
             }
-
 
             //如果是旋转木马 则多2个坑
             self.layWidth = self.itemNum * itemWidth;
@@ -303,7 +298,7 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             for (var i = 0; i < itemNum; i++) {
                 self.put(i, i);
             }
-            if (self.crousel) {
+            if (self.userConfig.crousel) {
                 self.put(itemNum - 1, -1)
             }
 
@@ -429,7 +424,7 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             var $nav = self.$nav;
             var itemWidth = self.itemWidth;
             var itemNum = self.itemNum;
-            if (self.crousel) {
+            if (self.userConfig.crousel) {
                 crouselIndex = index;
             }
             if (index < 0) {
@@ -437,14 +432,14 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             } else if (index > self.itemNum - 1) {
                 index = self.itemNum - 1
             }
-            var offsetX = self.crousel ? itemWidth * crouselIndex : itemWidth * index;
+            var offsetX = self.userConfig.crousel ? itemWidth * crouselIndex : itemWidth * index;
             var duration = 0.4;
             var easing = "ease-out";
             self.transform($layer[0], {
                 translateX: "(" + (-offsetX) + "px) translateZ(0px)"
             });
             $layer[0].style.webkitTransition = "-webkit-transform " + duration + "s " + easing + " 0s";
-            if (self.crousel) {
+            if (self.userConfig.crousel) {
                 self.curIndex = crouselIndex % itemNum < 0 ? itemNum + crouselIndex % itemNum : (crouselIndex % itemNum);
             } else {
                 self.curIndex = index
@@ -479,7 +474,7 @@ KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
             //最后一个索引
             var lastIndex = self.itemNum - 1;
             //旋转木马
-            if (self.crousel) {
+            if (self.userConfig.crousel) {
                 //考虑只有1个情况
                 if (self.direction == "right") {
                     self.put(curIndex - 1, crouselIndex - 1);

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
         <title>XSlide demo </title>
         <style type="text/css">
+
             body,li,ul{
               margin:0;
               padding: 0;
@@ -13,12 +14,15 @@
             margin:0;
             position: absolute;
             height: 100%;
+
            }
            #J_Slide{
              width: 100%;
              overflow: hidden;
              width: 320px;
              height: 140px;
+             /*-webkit-backface-visibility:hidden;*/
+             /*-webkit-transform-style:preserve-3d; */
            }
            #J_Slide .ks-xslide-item,#J_Slide .ks-xslide-item img{
              width: 320px;
@@ -61,25 +65,25 @@
 
          <ul class="ks-xslide-layer">
            <li class="ks-xslide-item current">
-             <a href="http://act.ju.taobao.com/go/act/sale/huijuydl.php?spm=5408.7195241.a24f4.1&push=1">
+             <a data-href="http://act.ju.taobao.com/go/act/sale/huijuydl.php?spm=5408.7195241.a24f4.1&push=1">
                     <img src="http://gtms02.alicdn.com/tps/i2/T1YoGcFz0dXXbkkrTW-620-220.jpg_Q90.jpg">
                 </a>
            </li>
            <li class="ks-xslide-item">
-             <a href="http://act.ju.taobao.com/go/act/juhuasuan/cjdpr2.php?spm=5408.7187453.a24dk.2&push=1">
+             <a data-href="http://act.ju.taobao.com/go/act/juhuasuan/cjdpr2.php?spm=5408.7187453.a24dk.2&push=1">
               <img src="http://gtms02.alicdn.com/tps/i2/T19PGeFvdeXXaSN9Er-640-220.jpg_Q90.jpg"></a>
            </li>
            <li class="ks-xslide-item">
-             <a href="http://act.ju.taobao.com/go/act/315/deco.php?spm=5408.7187453.a24dk.3&push=1">
+             <a data-href="http://act.ju.taobao.com/go/act/315/deco.php?spm=5408.7187453.a24dk.3&push=1">
               <img src="http://gtms02.alicdn.com/tps/i2/T1dcyAFuXdXXbkkrTW-620-220.jpg_Q90.jpg">
              </a>
            </li>
            <li class="ks-xslide-item">
-             <a href="http://act.ju.taobao.com/go/act/juhuasuan/cnhktcq.php?spm=5408.7187453.a24dk.4&ad_id=&am_id=1301089667d407816fe7&cm_id=&pm_id=&push=1">
+             <a data-href="http://act.ju.taobao.com/go/act/juhuasuan/cnhktcq.php?spm=5408.7187453.a24dk.4&ad_id=&am_id=1301089667d407816fe7&cm_id=&pm_id=&push=1">
               <img src="http://gtms03.alicdn.com/tps/i3/T17G8UFB4rXXbkkrTW-620-220.jpg_Q90.jpg"></a>
            </li>
            <li class="ks-xslide-item">
-             <a href="http://mingpin.taobao.com/?spm=5408.7187453.a24dk.5&push=1">
+             <a data-href="http://mingpin.taobao.com/?spm=5408.7187453.a24dk.5&push=1">
               <img src="http://gtms01.alicdn.com/tps/i1/T1HTRFFp8dXXXZmrTW-620-220.png_Q90.jpg"></a>
            </li>
          </ul>
@@ -95,6 +99,7 @@
             renderTo: "#J_Slide",
             crousel:true //开启旋转木马
         });
+        window.slide = slide
       })
       </script>
 

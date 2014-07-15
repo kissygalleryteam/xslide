@@ -9,7 +9,6 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
     var crouselIndex = 0;
     var MIN_VELOCITY = 0.2;
     var MIN_DELTAX = 5;
-
     var XSlide = Base.extend({
         transform: function(el, attrs) {
             var prefixs = ['-webkit-', '-moz-', '-o-', ''];
@@ -68,7 +67,7 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
                 "width": self.layWidth
             });
             self.transform($layer[0], {
-                translateX: "(0px) translateZ(0px)"
+                translateX: "(0px) translateZ(2px)"
             })
             $items.css({
                 "display": "block",
@@ -105,13 +104,13 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
         },
         getPosX: function() {
             var self = this;
-            return Number(window.getComputedStyle(self.$layer[0]).webkitTransform.match(/[-\d]+/g)[4]);
+            return Number(self.$layer[0].style.webkitTransform.match(/translateX\(-*\d*px\)/)[0].match(/-*\d*px/)[0].replace(/px/,""));
         },
         setPosX: function(offsetX) {
             var self = this;
             self.$layer[0].style.webkitTransition = "";
             self.transform(self.$layer[0], {
-                translateX: "(" + offsetX + "px) translateZ(0px)"
+                translateX: "(" + offsetX + "px) translateZ(2px)"
             });
         },
         getPrev: function() {
@@ -149,7 +148,6 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
             var $items = self.$items;
             var $nav = self.$nav;
             var $navItems = self.$navItems;
-
             $renderTo.on(Drag.DRAG_START, function(e) {
                 transX = self.getPosX();
                 self.fire("beforeSlide", {
@@ -231,7 +229,7 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
             var duration = 0.4;
             var easing = "ease-out";
             self.transform($layer[0], {
-                translateX: "(" + (-offsetX) + "px) translateZ(0px)"
+                translateX: "(" + (-offsetX) + "px) translateZ(2px)"
             });
             $layer[0].style.webkitTransition = "-webkit-transform " + duration + "s " + easing + " 0s";
             if (self.userConfig.crousel) {
@@ -289,7 +287,7 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
                 elIndex = 0;
             }
             self.transform(self.$items.item(elIndex)[0], {
-                translateX: "(" + offsetIndex * itemWidth + "px) translateZ(0px)"
+                translateX: "(" + offsetIndex * itemWidth + "px) translateZ(2px)"
             })
         },
         autoSlide: function() {

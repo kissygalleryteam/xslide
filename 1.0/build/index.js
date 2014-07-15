@@ -9,7 +9,7 @@ gallery/xslide/1.0/index
 	Drag Event for KISSY MINI 
 	@author xiaoqi.huxq@alibaba-inc.com
 */
-KISSY.add('gallery/xslide/1.0/drag',function(S, Node,Event) {
+KISSY.add("gallery/xslide/1.0/drag",function(S, Node,Event) {
 	var doc = window.document;
 	var DRAG_START = 'gestureDragStart',
 		DRAG_END = 'gestureDragEnd',
@@ -204,7 +204,7 @@ KISSY.add('gallery/xslide/1.0/drag',function(S, Node,Event) {
 	requires: ['node','event']
 });
 ;
-KISSY.add('gallery/xslide/1.0/index',function(S, Node, Base, Drag) {
+KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
     var $ = S.all;
     var prefix = ".ks-xslide-";
     var layerCls = prefix + "layer";

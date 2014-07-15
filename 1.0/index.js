@@ -1,5 +1,5 @@
 ;
-KISSY.add(function(S, Node, Base, Drag) {
+KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
     var $ = S.all;
     var prefix = ".ks-xslide-";
     var layerCls = prefix + "layer";

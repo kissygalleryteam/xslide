@@ -4,11 +4,11 @@
     "version": "1.0",
     "desc": "移动端轮播组件",
     "tag":"kissy-mini,kissy-mini",
-    "githubName":"huxiaoqi567",
+    "githubName":"zxmLoveLife",
     "author": {
-        "name": "伯才",
+        "name": "于宗",
         "email": "382850581@qq.com",
-        "page": "github.com/huxiaoqi567/"
+        "page": "github.com/zxmLoveLife/"
     },
 	"flexComboPort":"80",
 	"reserveServerPort":"9000",

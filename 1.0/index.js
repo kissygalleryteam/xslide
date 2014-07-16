@@ -327,5 +327,5 @@ KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
 
 
 }, {
-    requires: ['node', 'base', './drag']
+    requires: ['node', 'base', "gallery/xlist/1.0/drag"]
 });

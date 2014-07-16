@@ -1,4 +1,8 @@
-;
+/**
+ * @fileoverview
+ * @author 伯才<xiaoqi.huxq@alibaba-inc.com>
+ * @module xslide 1.0
+ **/
 KISSY.add("gallery/xslide/1.0/index",function(S, Node, Base, Drag) {
     var $ = S.all;
     var prefix = ".ks-xslide-";

@@ -1,6 +1,7 @@
 /*
 	Drag Event for KISSY MINI 
 	@author xiaoqi.huxq@alibaba-inc.com
+	@changelog  require event模块
 */
 ;KISSY.add("gallery/xslide/1.0/drag",function(S, Node,Event) {
 	var doc = window.document;

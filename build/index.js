@@ -1,7 +1,7 @@
 /*
 combined files : 
 
-kg/xslide/1.1.1/index
+kg/xslide/1.1.0/index
 
 */
 /**
@@ -9,7 +9,7 @@ kg/xslide/1.1.1/index
  * @author 伯才<xiaoqi.huxq@alibaba-inc.com>
  * @module xslide 
  **/
-KISSY.add('kg/xslide/1.1.1/index',function(S, Node, Base, Pan) {
+KISSY.add('kg/xslide/1.1.0/index',function(S, Node, Base, Pan) {
     var $ = S.all;
     var prefix = ".ks-xslide-";
     var layerCls = prefix + "layer";
@@ -337,5 +337,5 @@ KISSY.add('kg/xslide/1.1.1/index',function(S, Node, Base, Pan) {
 
 
 }, {
-    requires: ['node', 'base', "kg/xscroll/1.1.5/pan"]
+    requires: ['node', 'base', "kg/xscroll/1.1.0/pan"]
 });

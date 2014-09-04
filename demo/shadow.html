@@ -118,12 +118,12 @@
         packages:[
           {
             name:"kg",
-           path:KISSY.Config.debug ? "http://g.assets.daily.taobao.net/kg/":"http://g.tbcdn.cn/kg/",
+            path:"http://g.tbcdn.cn/",
             combine:false
           }
         ]
       })
-      KISSY.use("kg/xslide/1.1.1/index", function(S, XSlide) {
+      KISSY.use("kg/xslide/1.1.0/index", function(S, XSlide) {
         var slide = new XSlide({
             renderTo: "#J_Slide",
             width:320, //容器尺寸

@@ -96,13 +96,13 @@
         packages:[
           {
             name:"kg",
-            path:KISSY.Config.debug ? "http://g.assets.daily.taobao.net/kg/":"http://g.tbcdn.cn/kg/",
+            path:"http://g.tbcdn.cn/",
             debug:true,
             tag:Math.random()
           }
         ]
       })
-      KISSY.use("node,kg/xslide/1.1.1/index", function(S, Node,XSlide) {
+      KISSY.use("node,kg/xslide/1.1.0/index", function(S, Node,XSlide) {
         var slide = new XSlide({
             renderTo: "#J_Slide",
             autoRender:false,

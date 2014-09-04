@@ -1,2 +1,2 @@
-/*!build time : 2014-08-01 11:11:09 AM*/
-KISSY.config("modules",{"kg/xslide/1.1.0/index":{requires:["node","base","kg/xscroll/1.1.0/pan"]}});
+/*!build time : 2014-09-04 7:35:45 PM*/
+KISSY.config("modules",{"kg/xslide/1.1.1/index":{requires:["node","base","kg/xscroll/1.1.5/pan"]}});

@@ -92,19 +92,19 @@
       </div>
 
     </body>
-    <!-- // <script src="http://g.tbcdn.cn/kissy/m/0.2.0/mini-full-min.js"></script> -->
     <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
       <script type="text/javascript">
        KISSY.config({
         packages:[
           {
             name:"kg",
-            path:"http://g.tbcdn.cn/",
-            combine:false
+            path:KISSY.Config.debug ? "http://g.assets.daily.taobao.net/kg/":"http://g.tbcdn.cn/kg/",
+            combine:false,
+             ignorePackageNameInUri:true
           }
         ]
       })
-      KISSY.use("kg/xslide/1.1.0/index", function(S, XSlide) {
+      KISSY.use("kg/xslide/1.1.1/index", function(S, XSlide) {
         var slide = new XSlide({
             renderTo: "#J_Slide",
             crousel:true //开启旋转木马

@@ -331,5 +331,5 @@ KISSY.add(function(S, Node, Base, Pan) {
 
 
 }, {
-    requires: ['node', 'base', "kg/xscroll/1.1.0/pan"]
+    requires: ['node', 'base', "kg/xscroll/1.1.5/pan"]
 });

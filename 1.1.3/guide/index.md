@@ -2,21 +2,22 @@
 
 XSlide是适用于移动设备的轮播组件，使用方便、轻巧，支持旋转木马。
 
-* 版本：1.1.0
+* 版本：1.1
 * 作者：伯才
 * demo：
 
 
-[default.html](../demo/default.html)
+[默认](../demo/default.html)
 
-[crousel.html](../demo/crousel.html)
+[旋转木马](../demo/crousel.html)
 
-[multiple.html](../demo/multiple.html)
+[复合使用](../demo/multiple.html)
 
-[shadow.html](../demo/shadow.html)
+[阴影](../demo/shadow.html)
 
-[autoplay.html](../demo/autoplay.html)
+[自动播放](../demo/autoplay.html)
 
+[结合xscroll缩放预览图](http://gallery.kissyui.com/xscroll/1.1.8/demo/with-xslide-zoom.html)
 
 ### html 结构
 

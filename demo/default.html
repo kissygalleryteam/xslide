@@ -1,106 +1,114 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-        <title>XSlide demo </title>
+        <title>最简demo</title>
+        <script type="text/javascript">
+    !function(){function a(){document.documentElement.style.fontSize=document.documentElement.clientWidth/16+"px"}var b=null;window.addEventListener("resize",function(){clearTimeout(b),b=setTimeout(a,300)},!1),a()}(window);
+    </script>
         <style type="text/css">
-            body,li,ul{
+            *{
               margin:0;
               padding: 0;
             }
-           body{
-            margin:0;
-            position: absolute;
-            height: 100%;
-           }
            #J_Slide{
              width: 100%;
-             overflow: hidden;
-             width: 320px;
-             height: 140px;
+             overflow-x:scroll;
+             height: 5.7rem;
+             font-size: 0;
+             white-space: nowrap;
+             position: relative;
            }
-           #J_Slide .ks-xslide-item,#J_Slide .ks-xslide-item img{
-             width: 100%;
-             display: block;
-             float: left;
-             overflow: hidden;
+           #J_Slide .xs-content{
+            position: absolute;
+            height: 5.7rem;
            }
-           .ks-xslide-layer{
-
+           #J_Slide .xs-container{
+            height: 100%;
            }
-           .ks-xslide-nav{
+           #J_Slide .xslide-item{
+              display: inline-block;
+              width: 16rem;
+              height: 100%;
+            }
+            #J_Slide .xslide-item img{
+              width: 100%;
+              height: 100%;
+           }
+           .xslide-nav{
             position: absolute;
             width: 100%;
-            bottom: 0;
+            height: .5rem;
+            bottom: .4rem;
             left:0;
             text-align: center;
             z-index: 9999;
            }
-           .ks-xslide-nav .ks-xslide-nav-item{
+           .xslide-nav .xslide-nav-item{
             display: inline-block;
-            width: 10px;
-            height: 10px;
+            width: .5rem;
+            height: .5rem;
             background: #ddd;
             text-indent: 9999px;
             overflow: hidden;
-            border-radius:5px;
-            margin:0px 2px;
+            border-radius:.25rem;
+            margin:0 .1rem;
            }
-           .ks-xslide-nav .current{
+           .xslide-nav .current{
             background: #f60;
            }
         </style>
     </head>
     <body>
       <div id="J_Slide">
-        <ul class="ks-xslide-nav">
+
+        <ul class="xslide-nav">
         </ul>  
 
-         <ul class="ks-xslide-layer">
-           <li class="ks-xslide-item current">
+        <div class="xs-container">
+         <ul class="xs-content">
+           <li class="xslide-item current">
              <a href="http://act.ju.taobao.com/go/act/sale/huijuydl.php?spm=5408.7195241.a24f4.1&push=1">
                     <img src="http://gtms02.alicdn.com/tps/i2/T1YoGcFz0dXXbkkrTW-620-220.jpg_Q90.jpg">
                 </a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="http://act.ju.taobao.com/go/act/juhuasuan/cjdpr2.php?spm=5408.7187453.a24dk.2&push=1">
               <img src="http://gtms02.alicdn.com/tps/i2/T19PGeFvdeXXaSN9Er-640-220.jpg_Q90.jpg"></a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="http://act.ju.taobao.com/go/act/315/deco.php?spm=5408.7187453.a24dk.3&push=1">
               <img src="http://gtms02.alicdn.com/tps/i2/T1dcyAFuXdXXbkkrTW-620-220.jpg_Q90.jpg">
              </a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="http://act.ju.taobao.com/go/act/juhuasuan/cnhktcq.php?spm=5408.7187453.a24dk.4&ad_id=&am_id=1301089667d407816fe7&cm_id=&pm_id=&push=1">
               <img src="http://gtms03.alicdn.com/tps/i3/T17G8UFB4rXXbkkrTW-620-220.jpg_Q90.jpg"></a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="http://mingpin.taobao.com/?spm=5408.7187453.a24dk.5&push=1">
               <img src="http://gtms01.alicdn.com/tps/i1/T1HTRFFp8dXXXZmrTW-620-220.png_Q90.jpg"></a>
            </li>
          </ul>
+         </div>
       </div>
 
     </body>
-    <script src="http://g.tbcdn.cn/kissy/k/1.4.2/seed-min.js" charset="utf-8"></script>
-      <script type="text/javascript">
-      KISSY.config({
-        packages:[
-          {
-            name:"kg",
-            path:KISSY.Config.debug ? "http://g.assets.daily.taobao.net/kg/":"http://g.tbcdn.cn/kg/",
-            combine:false,
-             ignorePackageNameInUri:true
-          }
-        ]
-      })
-      KISSY.use("kg/xslide/1.1.3/index", function(S, XSlide) {
-        var slide = new XSlide({
+    <script type="text/javascript" src="http://g.tbcdn.cn/??kissy/k/1.4.8/seed-min.js"></script>
+    <script type="text/javascript">
+    KISSY.config({
+      packages:[
+      {
+        name:"kg",
+        path:"http://g.assets.daily.taobao.net/"
+      }]
+    })
+    KISSY.use("kg/xslide/3.0.0/",function(S,XSlide){
+        var xslide = new XSlide({
             renderTo: "#J_Slide"
         });
-      })
+    })
       </script>
 
 </html>

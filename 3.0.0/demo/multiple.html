@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <title>multiple</title>
+        <style type="text/css">
+            *{
+              margin:0;
+              padding: 0;
+            }
+            body{
+              width: 320px;
+              margin:auto;
+              position: relative;
+              overflow: hidden;
+            }
+           #J_Slide{
+             width: 100%;
+             overflow-x:auto;
+             overflow-y: hidden;
+             width: 100%;
+             height: 140px;
+             position: relative;
+             white-space: nowrap;
+           }
+           #J_Slide .xs-content{
+            position: absolute;
+           }
+           #J_Slide .xs-container,#J_Slide .xs-content{
+            height: 100%;
+           }
+           #J_Slide .xslide-item,#J_Slide .xslide-item img,.focus-box{
+             width: 70px;
+             display: inline-block;
+             height: 110px;
+             overflow: hidden;
+           }
+           .focus-box{
+            float: none;
+            position: absolute;
+            left:4px;
+            top:9px;
+            z-index: 9999;
+            border:1px solid red;
+           }
+           #J_Slide .xslide-item{
+            margin: 10px 3px;
+           }
+           .xslide-content{
+              height: 110px;
+              width: 9999px;
+           }
+           .xslide-nav{
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left:0;
+            text-align: center;
+            z-index: 9999;
+           }
+           .xslide-nav .xslide-nav-item{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ddd;
+            text-indent: 9999px;
+            overflow: hidden;
+            border-radius:5px;
+            margin:0px 2px;
+           }
+           .xslide-nav .current{
+            background: #f60;
+           }
+        </style>
+    </head>
+    <body>
+      <div id="J_Slide">
+        <div class="focus-box"></div>
+        <div class="xs-container">
+         <ul class="xs-content">
+           <li class="xslide-item current">
+             <a href="#">
+                   <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i4/T1opRPFQ8aXXXXXXXX_.jpg_160x160.jpg">
+                </a>
+           </li>
+           <li class="xslide-item">
+             <a href="#">
+              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i2/T1K0Y9FGxXXXXXXXXX_.jpg_160x160.jpg">
+            </a>
+           </li>
+           <li class="xslide-item">
+             <a href="#">
+              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i4/T1SKr4FK0bXXXXXXXX_.jpg_160x160.jpg">
+             </a>
+           </li>
+           <li class="xslide-item">
+             <a href="#">
+             <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i3/T10yf7FI0XXXXXXXXX_.jpg_160x160.jpg">
+            </a>
+           </li>
+           <li class="xslide-item">
+             <a href="#">
+              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i2/T1JRT3FMNbXXXXXXXX_.jpg_160x160.jpg">
+              </a>
+           </li>
+         </ul>
+    </div>
+               
+      </div>
+
+    </body>
+    <script type="text/javascript" src="http://g.tbcdn.cn/??kissy/k/1.4.8/seed-min.js"></script>
+      <script type="text/javascript">
+      KISSY.config({
+        packages:[
+          {
+            name:"kg",
+            path:KISSY.Config.debug ? "http://g.assets.daily.taobao.net/kg/":"http://g.tbcdn.cn/kg/",
+            combine:false,
+             ignorePackageNameInUri:true
+          }
+        ]
+      })
+      KISSY.use("node,kg/xslide/3.0.0/index", function(S,Node, XSlide) {
+        var slide = new XSlide({
+            renderTo: "#J_Slide",
+            width:320,
+            itemWidth:80
+        })
+      })
+      </script>
+
+</html>

@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=gbk">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-        <title>XSlide demo </title>
+        <title>multiple</title>
         <style type="text/css">
-            body,li,ul{
+            *{
               margin:0;
               padding: 0;
             }
-           body{
-            margin:0;
-            position: absolute;
-            height: 100%;
-           }
+            body{
+              width: 320px;
+              margin:auto;
+              position: relative;
+              overflow: hidden;
+            }
            #J_Slide{
              width: 100%;
-             overflow: hidden;
-             width: 320px;
+             overflow-x:auto;
+             overflow-y: hidden;
+             width: 100%;
              height: 140px;
+             position: relative;
+             white-space: nowrap;
            }
-           #J_Slide .ks-xslide-item,#J_Slide .ks-xslide-item img,.focus-box{
+           #J_Slide .xs-content{
+            position: absolute;
+           }
+           #J_Slide .xs-container,#J_Slide .xs-content{
+            height: 100%;
+           }
+           #J_Slide .xslide-item,#J_Slide .xslide-item img,.focus-box{
              width: 70px;
-             display: block;
-             float: left;
-              height: 110px;
+             display: inline-block;
+             height: 110px;
              overflow: hidden;
-           }
-           #J_Slide .ks-xslide-item{
-            width: 60px;
            }
            .focus-box{
             float: none;
             position: absolute;
-            left:9px;
+            left:4px;
             top:9px;
             z-index: 9999;
             border:1px solid red;
            }
-           #J_Slide .ks-xslide-item{
-            padding: 10px;
+           #J_Slide .xslide-item{
+            margin: 10px 3px;
            }
-           .ks-xslide-layer{
+           .xslide-content{
               height: 110px;
               width: 9999px;
            }
-           .ks-xslide-nav{
+           .xslide-nav{
             position: absolute;
             width: 100%;
             bottom: 0;
@@ -53,7 +59,7 @@
             text-align: center;
             z-index: 9999;
            }
-           .ks-xslide-nav .ks-xslide-nav-item{
+           .xslide-nav .xslide-nav-item{
             display: inline-block;
             width: 10px;
             height: 10px;
@@ -63,7 +69,7 @@
             border-radius:5px;
             margin:0px 2px;
            }
-           .ks-xslide-nav .current{
+           .xslide-nav .current{
             background: #f60;
            }
         </style>
@@ -71,39 +77,40 @@
     <body>
       <div id="J_Slide">
         <div class="focus-box"></div>
-         <ul class="ks-xslide-layer">
-           <li class="ks-xslide-item current">
+        <div class="xs-container">
+         <ul class="xs-content">
+           <li class="xslide-item current">
              <a href="#">
                    <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i4/T1opRPFQ8aXXXXXXXX_.jpg_160x160.jpg">
                 </a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="#">
               <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i2/T1K0Y9FGxXXXXXXXXX_.jpg_160x160.jpg">
+            </a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="#">
               <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i4/T1SKr4FK0bXXXXXXXX_.jpg_160x160.jpg">
              </a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="#">
              <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i3/T10yf7FI0XXXXXXXXX_.jpg_160x160.jpg">
+            </a>
            </li>
-           <li class="ks-xslide-item">
+           <li class="xslide-item">
              <a href="#">
               <img class="show-img" src="http://img1.tbcdn.cn/bao/uploaded/i2/T1JRT3FMNbXXXXXXXX_.jpg_160x160.jpg">
+              </a>
            </li>
          </ul>
-  
+    </div>
                
       </div>
 
-
-      <div id="console" style="position:absolute;bottom:0;width:100%;background:#000;opacity:0.5;color:#fff;min-height:20px;"></div>
-
     </body>
-    <script src="http://g.tbcdn.cn/kissy/m/0.2.0/mini-full-min.js"></script>
+    <script type="text/javascript" src="http://g.tbcdn.cn/??kissy/k/1.4.8/seed-min.js"></script>
       <script type="text/javascript">
       KISSY.config({
         packages:[
@@ -115,15 +122,14 @@
           }
         ]
       })
-      KISSY.use("node,kg/xslide/1.1.3/index", function(S,Node, XSlide) {
+      KISSY.use("node,kg/xslide/3.0.0/index", function(S,Node, XSlide) {
         var slide = new XSlide({
             renderTo: "#J_Slide",
             width:320,
             itemWidth:80
         });
-        slide.on("afterSlide",function(e){
-          S.all("#console").html(e.curIndex.toString());
-        })
+        //关闭边缘检测
+        slide.xscroll.userConfig.boundryCheck = false
       })
       </script>
 

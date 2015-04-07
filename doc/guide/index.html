@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>xslide</title>
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com-prettify.css">
+    <link rel="stylesheet" href="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdn.staticfile.org/prettify/r298/prettify.min.js"></script>
+    <script src="http://g.tbcdn.cn/kissy/k/1.4.8/seed-min.js" data-config="{combine:true}"></script>
+  </head>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
+    <div id="header"><a href="http://docs.kissyui.com/" class="logo">kissy</a>
+      <nav><a href="http://docs.kissyui.com/1.4/docs/html/coms.html">优秀组件推荐</a></nav>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3 bs-docs-sidebar">
+          <ul data-spy="affix" data-offset-top="0" class="nav nav-list bs-docs-sidenav"></ul>
+        </div>
+        <div class="span9 bs-docs-content">
+          <h1 data-id="undefined" class="title">xslide</h1>
+          <p class="author-wrapper"><span>组件有问题？旺旺联系作者：</span><a href="https://github.com/huxiaoqi567" target="_blank" data-name="伯才" class="author"><img src="https://avatars.githubusercontent.com/u/1961484?v=3&amp;s=60" alt="伯才"></a><span class="author-name">伯才</span>
+          </p>
+          <div class="common-link"><a href="../demo/index.html" target="_blank" class="demo">示例</a><a href="https://github.com/kissygalleryteam/xslide" target="_blank" class="source">源码</a></div>
+          <p class="com-info"><span class="info-label">View</span><span data-com="xslide" class="J_View">1406</span></p>
+          <p class="com-info"><span class="info-label">所属分类</span><a href="http://kpm.taobao.net/list/图片展示">图片展示</a><span class="info-label tag-label">组件标签</span><a href="http://kpm.taobao.net/list/tag?tag="></a>
+          </p>
+          <p class="com-info"><span class="info-label">kissy版本</span><span>1.4.X</span>
+          </p><h2 id="-">综述</h2>
+<p>XSlide是适用于移动设备的轮播组件，使用方便、轻巧，支持旋转木马。</p>
+<ul>
+<li>版本：3.0.0</li>
+<li>作者：伯才</li>
+<li>demo：</li>
+</ul>
+<p><a href="../demo/default.html">默认</a></p>
+<p><a href="../demo/crousel.html">旋转木马</a></p>
+<p><a href="../demo/multiple.html">复合使用</a></p>
+<p><a href="../demo/autoslide.html">自动播放</a></p>
+<p><a href="../demo/zoom.html">结合xscroll缩放预览图</a></p>
+<h3 id="html-">html 结构</h3>
+<pre><code>
+&lt;div id=&quot;J_Slide&quot;&gt;
+    &lt;!-- 小圆点 --&gt;
+     &lt;ul class=&quot;ks-xslide-nav&quot;&gt;&lt;/ul&gt;  
+    &lt;!-- 选项卡容器 可以默认宽度9999px--&gt;
+         &lt;ul class=&quot;ks-xslide-layer&quot;&gt;
+          &lt;li class=&quot;ks-xslide-item current&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;ks-xslide-item&quot;&gt;&lt;/li&gt;
+          &lt;li class=&quot;ks-xslide-item&quot;&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><h2 id="api-">API说明</h2>
+<h3 id="attribute">Attribute</h3>
+<h4 id="renderto">renderTo</h4>
+<p>{ id|HTMLElement } 渲染的容器，需要设置容器的宽高</p>
+<h4 id="width">width</h4>
+<p>{ Number } 容器宽度</p>
+<h4 id="height">height</h4>
+<p>{ Number } 容器高度</p>
+<h4 id="itemwidth">itemWidth</h4>
+<p>{ Number } 轮播项宽度</p>
+<h4 id="itemheight">itemHeight</h4>
+<p>{ Number } 容器高度</p>
+<h4 id="crousel">crousel</h4>
+<p>{ Boolean } 是否开启旋转木马</p>
+<h4 id="autoslide">autoSlide</h4>
+<p>{ Boolean } 是否开启自动轮播</p>
+<h4 id="autorender">autoRender</h4>
+<p>{ Boolean } 是否自动渲染 如选择否 则需要手动调用render()方法</p>
+<h4 id="duration">duration</h4>
+<p>{ Number } 自动播放的周期 单位ms</p>
+<h3 id="method">Method</h3>
+<h4 id="render-">render()</h4>
+<p>渲染、更新 可以重复调用进行组件更新，如卡牌数量、内容的变更</p>
+<h4 id="animto-index-">animTo(index)</h4>
+<p>滚动到第index个轮播项，从0开始</p>
+<h4 id="getcurrentindex-">getCurrentIndex()</h4>
+<p>获取当前的index</p>
+<h4 id="getitem-index-">getItem(index)</h4>
+<p>获取第index个轮播项，是KISSY.Node类型</p>
+<h4 id="getcurrent-">getCurrent()</h4>
+<p>获取当前的轮播项，是KISSY.Node类型</p>
+<h4 id="getposx-">getPosX()</h4>
+<p>获取当前距左侧的offset</p>
+<h4 id="destroy-">destroy()</h4>
+<p>销毁当前实例</p>
+
+          <div style="display:none;"><script type="text/javascript" src="http://tajs.qq.com/stats?sId=36378479" charset="UTF-8"></script></div>
+          <script src="http://docs.kissyui.com/1.4/source/guideline/templates/assets/com.js"></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
